@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Father's Day</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #111827, #1f2937);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #facc15;
+      top: 0;
+      animation: fall 3s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+      }
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen p-4 relative">
+
+  <h1 class="text-5xl md:text-7xl font-bold text-yellow-300 mt-10 mb-16">
+    🎉 Happy Father's Day! 🎉
+  </h1>
+
+  <!-- Confetti -->
+  <div id="confetti-container"></div>
+
+  <!-- Images in different positions -->
+  <div class="relative w-full h-[500px]">
+    <!-- Left Image -->
+    <img id="img1" src="img1.jpg"
+         class="absolute w-64 h-64 rounded-xl shadow-xl opacity-0 left-8 top-24" />
+
+    <!-- Top Center Image -->
+    <img id="img2" src="img2.jpg"
+         class="absolute w-64 h-64 rounded-xl shadow-xl opacity-0 left-1/2 -translate-x-1/2 top-0" />
+
+    <!-- Right Image -->
+    <img id="img3" src="img3.jpg"
+         class="absolute w-64 h-64 rounded-xl shadow-xl opacity-0 right-8 top-56" />
+  </div>
+
+  <script>
+    // Confetti
+    const confettiContainer = document.getElementById("confetti-container");
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = `${Math.random() * 100}%`;
+      confetti.style.backgroundColor = ["#facc15", "#ef4444", "#3b82f6", "#22c55e"][Math.floor(Math.random() * 4)];
+      confetti.style.animationDuration = `${2 + Math.random() * 2}s`;
+      confettiContainer.appendChild(confetti);
+    }
+
+    // Animations with position and rotation
+    anime({
+      targets: '#img1',
+      translateX: [-500, 0],
+      rotate: [0, 360],
+      opacity: [0, 1],
+      easing: 'easeOutExpo',
+      duration: 2000,
+      delay: 1000
+    });
+
+    anime({
+      targets: '#img2',
+      translateY: [-500, 0],
+      rotate: [0, 360],
+      opacity: [0, 1],
+      easing: 'easeOutExpo',
+      duration: 2000,
+      delay: 3000
+    });
+
+    anime({
+      targets: '#img3',
+      translateX: [500, 0],
+      rotate: [0, 360],
+      opacity: [0, 1],
+      easing: 'easeOutExpo',
+      duration: 2000,
+      delay: 5000
+    });
+  </script>
+
+</body>
+</html>
