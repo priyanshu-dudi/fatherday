@@ -21,6 +21,7 @@
       top: 0;
       animation: fall 3s linear infinite;
       opacity: 0.9;
+      z-index: 0;
     }
 
     @keyframes fall {
@@ -35,26 +36,27 @@
 </head>
 <body class="flex flex-col items-center justify-start min-h-screen p-4 relative">
 
-  <h1 class="text-5xl md:text-7xl font-bold text-yellow-300 mt-10 mb-16">
+  <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-yellow-300 mt-10 mb-16 text-center z-10">
     🎉 Happy Father's Day! 🎉
   </h1>
 
   <!-- Confetti -->
   <div id="confetti-container"></div>
 
-  <!-- Images in different positions -->
-  <div class="relative w-full h-[500px]">
-    <!-- Left Image -->
+  <!-- Image container with relative positioning -->
+  <div class="relative w-full max-w-screen-lg h-[450px] sm:h-[500px] md:h-[550px] z-10">
+    
+    <!-- Left Image on phones/tablets/desktops -->
     <img id="img1" src="img1.jpg"
-         class="absolute w-64 h-64 rounded-xl shadow-xl opacity-0 left-8 top-24" />
+         class="absolute w-40 sm:w-48 md:w-64 aspect-square rounded-xl shadow-xl opacity-0 left-2 sm:left-6 top-24 sm:top-28 md:top-36" />
 
     <!-- Top Center Image -->
     <img id="img2" src="img2.jpg"
-         class="absolute w-64 h-64 rounded-xl shadow-xl opacity-0 left-1/2 -translate-x-1/2 top-0" />
+         class="absolute w-40 sm:w-48 md:w-64 aspect-square rounded-xl shadow-xl opacity-0 left-1/2 -translate-x-1/2 top-0" />
 
     <!-- Right Image -->
     <img id="img3" src="img3.jpg"
-         class="absolute w-64 h-64 rounded-xl shadow-xl opacity-0 right-8 top-56" />
+         class="absolute w-40 sm:w-48 md:w-64 aspect-square rounded-xl shadow-xl opacity-0 right-2 sm:right-6 top-40 sm:top-48 md:top-56" />
   </div>
 
   <script>
@@ -69,10 +71,10 @@
       confettiContainer.appendChild(confetti);
     }
 
-    // Animations with position and rotation
+    // Animate images one by one with rotation and entrance
     anime({
       targets: '#img1',
-      translateX: [-500, 0],
+      translateX: [-400, 0],
       rotate: [0, 360],
       opacity: [0, 1],
       easing: 'easeOutExpo',
@@ -82,7 +84,7 @@
 
     anime({
       targets: '#img2',
-      translateY: [-500, 0],
+      translateY: [-400, 0],
       rotate: [0, 360],
       opacity: [0, 1],
       easing: 'easeOutExpo',
@@ -92,7 +94,7 @@
 
     anime({
       targets: '#img3',
-      translateX: [500, 0],
+      translateX: [400, 0],
       rotate: [0, 360],
       opacity: [0, 1],
       easing: 'easeOutExpo',
